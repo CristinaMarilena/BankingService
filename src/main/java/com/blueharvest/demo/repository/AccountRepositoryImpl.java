@@ -28,7 +28,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account updateAcount(Account account) {
+    public Account updateAccount(Account account) {
         return accountData.updateAccount(account);
     }
 

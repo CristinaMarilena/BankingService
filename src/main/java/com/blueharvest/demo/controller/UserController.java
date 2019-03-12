@@ -5,6 +5,7 @@ import com.blueharvest.demo.exception.NotFoundException;
 import com.blueharvest.demo.mapping.UserConverter;
 import com.blueharvest.demo.model.User;
 import com.blueharvest.demo.service.entity.UserService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -23,7 +24,7 @@ public class UserController {
         this.userConverter = userConverter;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public UserDto getUserInformation(@PathVariable Long id) {
         User user = userService.getUserById(id);
 
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public User getUserInformation(@Valid @RequestBody User user) {
+    public User saveUser(@Valid @RequestBody User user) {
         return this.userService.saveUser(user);
     }
 }

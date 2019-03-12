@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
-@Service("userDetailsService")
+@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository userRepository;

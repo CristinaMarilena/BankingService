@@ -8,6 +8,6 @@ public interface AccountRepository {
 
     Account findById(Long id);
     Account save(Account account);
-    Account updateAcount(Account account);
+    Account updateAccount(Account account);
     Account findByIsPrimary(List<Long> accountsIds);
 }

@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -106,6 +107,9 @@ public class User implements UserDetails {
     }
 
     public void addAccount(Long id){
+        if(this.accounts == null){
+            this.accounts = new ArrayList<>();
+        }
         accounts.add(id);
     }
 }

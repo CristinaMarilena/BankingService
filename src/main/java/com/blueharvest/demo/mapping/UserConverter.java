@@ -64,7 +64,12 @@ public class UserConverter {
 
             userAccounts.add(accountTransactionsSummary);
 
-            balance = balance.add(account.getAccountBalance());
+            if(account.getAccountBalance() == null){
+                account.setAccountBalance(BigDecimal.ZERO);
+                accountService.updateAccount(account);
+            } else {
+                balance = balance.add(account.getAccountBalance());
+            }
 
         }
 

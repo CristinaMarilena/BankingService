@@ -5,17 +5,19 @@ import com.blueharvest.demo.model.Account;
 import com.blueharvest.demo.model.User;
 import com.blueharvest.demo.service.entity.AccountService;
 import com.blueharvest.demo.service.entity.UserService;
+import com.blueharvest.demo.utils.AccountUtils;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
 
 import static com.blueharvest.demo.model.AccountType.SAVINGS;
+import static com.blueharvest.demo.utils.AccountUtils.createSimpleAccount;
 
 @Service
 public class SecondaryAccountService {
 
-    private UserService userService;
+    private final UserService userService;
     private AccountService accountService;
     private AccountsTransactionsService accountsTransactionsService;
 
@@ -32,7 +34,7 @@ public class SecondaryAccountService {
             throw new NotFoundException("The user was not found.Please contact the administration.");
         }
 
-        Account account = accountService.createSimpleAccount(false, SAVINGS);
+        Account account = createSimpleAccount(false, SAVINGS);
         user.addAccount(account.getId());
 
         if(initialCredit.compareTo(BigDecimal.ZERO) > 0){

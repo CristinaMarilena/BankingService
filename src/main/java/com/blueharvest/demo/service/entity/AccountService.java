@@ -11,5 +11,4 @@ public interface AccountService {
     Account saveAccount(Account account);
     Account updateAccount(Account account);
     Account findPrimaryAccountInUserAccounts(List<Long> accountIds);
-    Account createSimpleAccount(boolean primary, AccountType accountType);
 }
