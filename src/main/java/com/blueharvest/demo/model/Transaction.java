@@ -10,7 +10,7 @@ public class Transaction {
     private Long id;
     private Long fromAccount;
     private Long toAccount;
-    private BigDecimal ammount;
+    private BigDecimal amount;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Transaction {
         this.toAccount = toAccount;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 }

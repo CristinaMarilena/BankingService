@@ -1,30 +1,19 @@
 package com.blueharvest.demo.data;
 
 import com.blueharvest.demo.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class UserData {
 
-    private volatile static UserData instance;
     private List<User> users;
 
     private UserData() {
         addUsersToTheInitialList();
-    }
-
-    public static UserData getInstance(){
-        if(instance == null){
-            synchronized (UserData.class){
-                if(instance == null){
-                    instance = new UserData();
-                }
-            }
-        }
-
-        return instance;
     }
 
     public List<User> getUsers() {
@@ -70,7 +59,7 @@ public class UserData {
         user1.setAccounts(userAccounts);
         this.users.add(user1);
 
-        User user2 = new User();
+/*        User user2 = new User();
         user2.setId(2L);
         user2.setName("Hermione");
         user2.setSurname("Granger");
@@ -92,7 +81,7 @@ public class UserData {
         user5.setId(5L);
         user5.setName("Luna");
         user5.setSurname("Lovegood");
-        this.users.add(user5);
+        this.users.add(user5);*/
     }
 
 }

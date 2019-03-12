@@ -38,13 +38,21 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getSurname() { return surname; }
+    public String getSurname() {
+        return surname;
+    }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
     public List<Long> getAccounts() {
         return accounts;
@@ -55,7 +63,9 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String getUsername() { return this.name + " " + this.surname; }
+    public String getUsername() {
+        return this.name + " " + this.surname;
+    }
 
     public void setPassword(String password) {
         this.password = password;

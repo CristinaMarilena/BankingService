@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.util.List;
 
 import static com.blueharvest.demo.utils.RandomGenerator.randomId;
 
@@ -34,11 +35,16 @@ public class TransactionServiceImpl implements TransactionService {
     public Transaction createSimpleTransaction(Account fromAccount, Account toAccount, BigDecimal credit) {
         Transaction transaction = new Transaction();
         transaction.setId(randomId());
-        transaction.setAmmount(credit);
+        transaction.setAmount(credit);
         transaction.setFromAccount(fromAccount.getId());
         transaction.setToAccount(toAccount.getId());
 
         return transaction;
+    }
+
+    @Override
+    public List<Transaction> findByAccount(Long accountId) {
+        return transactionRepository.findByAccount(accountId);
     }
 
 }

@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 /**
- * The barebone configuration of spring Security in our application
+ * TODO after finishing the assignment
  */
 @Configuration
 @EnableWebSecurity

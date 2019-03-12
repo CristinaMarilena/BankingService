@@ -1,31 +1,22 @@
 package com.blueharvest.demo.data;
 
 import com.blueharvest.demo.model.Transaction;
-import com.blueharvest.demo.model.User;
+import org.hibernate.engine.internal.Collections;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+@Component
 public class TransactionData {
 
-    private volatile static TransactionData instance;
     private List<Transaction> transactions;
 
     private TransactionData() {
         addTransactionsToTheInitialList();
-    }
-
-    public static TransactionData getInstance() {
-        if (instance == null) {
-            synchronized (TransactionData.class) {
-                if (instance == null) {
-                    instance = new TransactionData();
-                }
-            }
-        }
-
-        return instance;
     }
 
     public List<Transaction> getTransactions() {
@@ -33,7 +24,12 @@ public class TransactionData {
     }
 
     public Transaction findTransactionById(Long id) {
-        return this.transactions.stream().filter(user -> user.getId() == id).findFirst().get();
+        Optional<Transaction> transactionOptional = this.transactions.stream().filter(transaction -> transaction.getId().equals(id)).findFirst();
+        return transactionOptional.orElse(null);
+    }
+
+    public List<Transaction> findTransactionByAccount(Long accountId) {
+        return this.transactions.stream().filter(transaction -> transaction.getFromAccount().equals(accountId) || transaction.getToAccount().equals(accountId)).collect(Collectors.toList());
     }
 
     public Transaction addTransaction(Transaction transaction) {
@@ -48,7 +44,7 @@ public class TransactionData {
         transaction1.setId(1L);
         transaction1.setFromAccount(3L);
         transaction1.setToAccount(4L);
-        transaction1.setAmmount(BigDecimal.valueOf(200));
+        transaction1.setAmount(BigDecimal.valueOf(200));
         this.transactions.add(transaction1);
 
 /*        Transaction transaction2 = new Transaction();

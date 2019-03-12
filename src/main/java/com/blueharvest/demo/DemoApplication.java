@@ -10,4 +10,12 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
+    /**
+     * TODO Mockito test
+     * TODO unit test
+     * TODO service test
+     * TODO check jpa methods
+     * TODO integration test
+     */
+
 }

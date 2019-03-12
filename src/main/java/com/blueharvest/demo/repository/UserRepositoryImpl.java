@@ -4,13 +4,16 @@ import com.blueharvest.demo.data.UserData;
 import com.blueharvest.demo.model.User;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Inject;
+
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
     private UserData userData;
 
-    public UserRepositoryImpl(){
-        this.userData = UserData.getInstance();
+    @Inject
+    public UserRepositoryImpl(UserData userData){
+        this.userData = userData;
     }
 
     @Override

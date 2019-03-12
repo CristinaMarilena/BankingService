@@ -2,32 +2,20 @@ package com.blueharvest.demo.data;
 
 import com.blueharvest.demo.model.Account;
 import com.blueharvest.demo.model.AccountType;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AccountData {
 
-    private volatile static AccountData instance;
     private List<Account> accounts;
 
     private AccountData() {
         addAccountsToTheInitialList();
-    }
-
-    public static AccountData getInstance() {
-        if (instance == null) {
-            synchronized (AccountData.class) {
-                if (instance == null) {
-                    instance = new AccountData();
-                }
-            }
-        }
-
-        return instance;
     }
 
     /**********************************************
@@ -91,7 +79,7 @@ public class AccountData {
         account1.setAccountBalance(BigDecimal.valueOf(700));
         this.accounts.add(account1);
 
-        Account account2 = new Account();
+     /*   Account account2 = new Account();
         account2.setId(2L);
         account2.setPrimary(false);
         account2.setAccountType(AccountType.SAVINGS);
@@ -115,7 +103,7 @@ public class AccountData {
 
         Account account7 = new Account();
         account7.setId(7L);
-        this.accounts.add(account7);
+        this.accounts.add(account7);*/
     }
 
 }

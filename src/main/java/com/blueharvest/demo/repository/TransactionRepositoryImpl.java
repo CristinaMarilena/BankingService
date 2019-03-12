@@ -4,13 +4,17 @@ import com.blueharvest.demo.data.TransactionData;
 import com.blueharvest.demo.model.Transaction;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Inject;
+import java.util.List;
+
 @Repository
 public class TransactionRepositoryImpl implements TransactionRepository{
 
     private TransactionData transactionData;
 
-    public TransactionRepositoryImpl(){
-        this.transactionData = TransactionData.getInstance();
+    @Inject
+    public TransactionRepositoryImpl(TransactionData transactionData){
+        this.transactionData = transactionData;
     }
 
     @Override
@@ -21,5 +25,10 @@ public class TransactionRepositoryImpl implements TransactionRepository{
     @Override
     public Transaction save(Transaction transaction) {
         return this.transactionData.addTransaction(transaction);
+    }
+
+    @Override
+    public List<Transaction> findByAccount(Long accountId) {
+        return this.transactionData.findTransactionByAccount(accountId);
     }
 }
