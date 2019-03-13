@@ -25,6 +25,11 @@ public class UserData {
         return userOptional.orElse(null);
     }
 
+    public User findUserByUsername(String username){
+        Optional<User> userOptional = this.users.stream().filter(usr -> usr.getUsername().equals(username)).findFirst();
+        return userOptional.orElse(null);
+    }
+
     public User addUser(User user){
         this.users.add(user);
         return user;
@@ -54,9 +59,11 @@ public class UserData {
         user1.setId(1L);
         user1.setName("Harry");
         user1.setSurname("Potter");
+        user1.setUsername("harry");
         List<Long> userAccounts = new ArrayList<>();
         userAccounts.add(1L);
         user1.setAccounts(userAccounts);
+        user1.setPassword("potter");
         this.users.add(user1);
 
 /*        User user2 = new User();

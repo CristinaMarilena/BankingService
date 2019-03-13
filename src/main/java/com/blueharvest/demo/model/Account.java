@@ -1,12 +1,9 @@
 package com.blueharvest.demo.model;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
 public class Account {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int accountNumber;
     private boolean isPrimary;

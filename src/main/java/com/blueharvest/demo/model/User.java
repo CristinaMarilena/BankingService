@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,8 +12,6 @@ import java.util.List;
 
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull(message = "The name must not be empty")
@@ -28,6 +25,13 @@ public class User implements UserDetails {
 
     @NotNull
     private boolean enabled;
+
+    @NotNull
+    private String username;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     private List<Long> accounts;
 
@@ -65,7 +69,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.name + " " + this.surname;
+        return this.username;
     }
 
     public void setPassword(String password) {

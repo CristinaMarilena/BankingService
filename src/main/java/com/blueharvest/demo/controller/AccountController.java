@@ -1,7 +1,7 @@
 package com.blueharvest.demo.controller;
 
 import com.blueharvest.demo.dto.UserAccountsDto;
-import com.blueharvest.demo.mapping.UserConverter;
+import com.blueharvest.demo.converter.UserConverter;
 import com.blueharvest.demo.model.User;
 import com.blueharvest.demo.service.functional.SecondaryAccountService;
 import org.springframework.web.bind.annotation.PathVariable;

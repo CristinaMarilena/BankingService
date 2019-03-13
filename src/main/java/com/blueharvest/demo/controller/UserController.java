@@ -2,10 +2,9 @@ package com.blueharvest.demo.controller;
 
 import com.blueharvest.demo.dto.UserDto;
 import com.blueharvest.demo.exception.NotFoundException;
-import com.blueharvest.demo.mapping.UserConverter;
+import com.blueharvest.demo.converter.UserConverter;
 import com.blueharvest.demo.model.User;
 import com.blueharvest.demo.service.entity.UserService;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -29,6 +28,17 @@ public class UserController {
         User user = userService.getUserById(id);
 
         if (user != null) {
+            return userConverter.convertToUserDto(user);
+        } else {
+            throw new NotFoundException("No user provided with this id");
+        }
+    }
+
+    @GetMapping(value = "/login")
+    public UserDto getUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+        User user = userService.findByUsername(username);
+
+        if (user != null && password.equals(user.getPassword())) {
             return userConverter.convertToUserDto(user);
         } else {
             throw new NotFoundException("No user provided with this id");

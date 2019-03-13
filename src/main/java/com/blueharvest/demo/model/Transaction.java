@@ -1,12 +1,9 @@
 package com.blueharvest.demo.model;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
 public class Transaction {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long fromAccount;
     private Long toAccount;

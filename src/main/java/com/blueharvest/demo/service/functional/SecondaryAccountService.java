@@ -5,7 +5,6 @@ import com.blueharvest.demo.model.Account;
 import com.blueharvest.demo.model.User;
 import com.blueharvest.demo.service.entity.AccountService;
 import com.blueharvest.demo.service.entity.UserService;
-import com.blueharvest.demo.utils.AccountUtils;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -38,14 +37,18 @@ public class SecondaryAccountService {
         user.addAccount(account.getId());
 
         if(initialCredit.compareTo(BigDecimal.ZERO) > 0){
-            accountService.saveAccount(account);
             Account primaryAccount = accountService.findPrimaryAccountInUserAccounts(user.getAccounts());
-            accountsTransactionsService.transactionBetweenAccounts(primaryAccount, account, initialCredit);
+            transactionBetweenPrimaryAndCurrentAccount(primaryAccount, account, initialCredit);
         }
 
         accountService.saveAccount(account);
         userService.updateUser(user);
         return user;
+    }
+
+    private void transactionBetweenPrimaryAndCurrentAccount(Account primaryAccount, Account account, BigDecimal initialCredit){
+        accountService.saveAccount(account);
+        accountsTransactionsService.transactionBetweenAccounts(primaryAccount, account, initialCredit);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.blueharvest.demo.data;
 
 import com.blueharvest.demo.model.Transaction;
-import org.hibernate.engine.internal.Collections;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

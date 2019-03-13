@@ -76,7 +76,7 @@ public class AccountData {
         account1.setId(1L);
         account1.setPrimary(true);
         account1.setAccountType(AccountType.STANDARD);
-        account1.setAccountBalance(BigDecimal.valueOf(700));
+        account1.setAccountBalance(BigDecimal.valueOf(1000));
         this.accounts.add(account1);
 
      /*   Account account2 = new Account();
