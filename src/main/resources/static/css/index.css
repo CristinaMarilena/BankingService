@@ -2,14 +2,16 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
 body {
-  color: #fff;
+/* The image used */
   background-image: url("../img/register.jpg");
-  height: 160%;
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Open Sans', sans-serif;
-  min-width: 100%;
-  min-height: 100%;
+  background-size: cover;
 }
 
 .form {
