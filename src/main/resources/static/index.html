@@ -45,6 +45,10 @@
     <!--User accounts information-->
     <div ng-hide="!hideLogin" class="accounts">
         <div>
+            <span class="badge badge-secondary" ng-hide="!hideLogin" style="font-size: 20px">{{credentials.name}}  {{credentials.surname}}</span><br>
+        </div>
+
+        <div>
             <span class="badge badge-secondary" style="font-size: 30px">Accounts and transaction history</span>
             <br>
         </div>
