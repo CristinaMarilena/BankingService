@@ -87,7 +87,7 @@ GET: /user/login
 **_model_**
 
 * the plain models of the application defined for `Account`, `User` & `Transaction`.
-It also defines an class `AccountTransactionsSummary` that combines account and transactions information and an enum for the type of accounts that can be created.
+It also defines a class `AccountTransactionsSummary` that combines account and transactions information and an enum for the type of accounts that can be created.
 
 **_repository_** 
 
@@ -115,7 +115,7 @@ At the moment there is only one user in memory
             username : harry
             password : potter
          
-After login take care so you don't refresh the page because the user is not saved in a session and refreshing the page with reinstantiate the angular module.
+After login take care so you don't refresh the page because the user is not saved in a session and refreshing the page will reinstantiate the angular module.
 
 ![main-screen](./screenshots/main-screen.png)
 
