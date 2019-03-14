@@ -102,7 +102,7 @@ It also defines an class `AccountTransactionsSummary` that combines account and 
 
 ### Frontend
 
-The frontend is implemented using `AngularJS`. I used plain old `HTML` as the template language and by using `AngularJS` I could automatically synchronize data from the UI (view) with the `JavaScript` objects (model) through 2-way data binding. 
+The frontend(very basic) is implemented using `AngularJS`. I used plain old `HTML` as the template language and by using `AngularJS` I could automatically synchronize data from the UI (view) with the `JavaScript` objects (model) through 2-way data binding. 
 
 All the logic is implemented in `js/app.js` where the angular module, the user controller and the services are defined.
 
