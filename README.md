@@ -7,7 +7,7 @@ The project was implemented using mainly `Java 8` as the backend language and `S
 ## Requirements
 For building and running the application you need:
 * JDK 1.8
-* Maven 3
+* Maven 
 
 ## Running the application locally
 There are several ways to run a Spring Boot application on your local machine. 
@@ -52,7 +52,7 @@ POST: /account/customerId/initialCredit
 
 ```sh
 HTTP request:
-AT REQUEST: "/"
+ANY REQUEST: "/"
 ```
           
 `UserController` handles the user requests, like getting information about a particular user.
@@ -72,7 +72,7 @@ GET: /user/login
 
 **_data_**
 
-* where the in-memory data is stored. It (more or less) acts like a relational database  and it's implementing the CRUD and any other necesarry methods.
+* where the in-memory data is stored. It (more or less) acts like a relational database and it's implementing the CRUD and any other necesarry methods.
 
 **_dto_**
 
