@@ -4,16 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class InSufficientFundException extends RuntimeException {
+public class InsufficientFundException extends RuntimeException {
 
-    private String message;
+    private final String message;
 
-    public InSufficientFundException(String message) {
+    public InsufficientFundException(String message) {
         this.message = message;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
-
 }

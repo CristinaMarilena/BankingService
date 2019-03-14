@@ -45,6 +45,5 @@ public class TransactionData {
         transaction1.setToAccount(43242L);
         transaction1.setAmount(BigDecimal.valueOf(200));
         this.transactions.add(transaction1);
-
     }
 }

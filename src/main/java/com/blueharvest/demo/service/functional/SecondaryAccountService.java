@@ -40,7 +40,6 @@ public class SecondaryAccountService {
             Account primaryAccount = accountService.findPrimaryAccountInUserAccounts(user.getAccounts());
             transactionBetweenPrimaryAndCurrentAccount(primaryAccount, account, initialCredit);
         }
-
         accountService.saveAccount(account);
         userService.updateUser(user);
         return user;

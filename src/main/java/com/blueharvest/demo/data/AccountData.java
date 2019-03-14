@@ -18,7 +18,6 @@ public class AccountData {
         addAccountsToTheInitialList();
     }
 
-
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -40,7 +39,6 @@ public class AccountData {
                 accountIndex = i;
             }
         }
-
         this.accounts.remove(accountIndex);
     }
 
@@ -54,7 +52,6 @@ public class AccountData {
                 }
             }
         }
-
         return primaryAccount;
     }
 
@@ -63,7 +60,6 @@ public class AccountData {
         this.addAccount(accountToBeUpdated);
         return this.findAccountById(accountToBeUpdated.getId());
     }
-
 
     private void addAccountsToTheInitialList() {
         this.accounts = new ArrayList<>();
@@ -74,7 +70,6 @@ public class AccountData {
         account1.setAccountType(AccountType.PRIMARY);
         account1.setAccountBalance(BigDecimal.valueOf(1000));
         this.accounts.add(account1);
-
     }
 
 }

@@ -1,6 +1,6 @@
 package com.blueharvest.demo.service.functional;
 
-import com.blueharvest.demo.exception.InSufficientFundException;
+import com.blueharvest.demo.exception.InsufficientFundException;
 import com.blueharvest.demo.exception.NotFoundException;
 import com.blueharvest.demo.model.Account;
 import com.blueharvest.demo.model.Transaction;
@@ -30,7 +30,7 @@ public class AccountsTransactionsService {
         }
 
         if(fromAccount.getAccountBalance().compareTo(credit) < 0){
-            throw new InSufficientFundException("Not enough credit for this transaction.");
+            throw new InsufficientFundException("Not enough credit for this transaction.");
         }
 
         Transaction transaction = transactionService.createSimpleTransaction(fromAccount, toAccount, credit);

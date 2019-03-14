@@ -26,7 +26,7 @@ public class UserConverter {
     private AccountService accountService;
     private TransactionService transactionService;
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(UserConverter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserConverter.class);
 
     @Inject
     public UserConverter(ModelMapper modelMapper, AccountService accountService, TransactionService transactionService) {
@@ -51,16 +51,14 @@ public class UserConverter {
 
     public UserDto convertToUserDto(User user) {
         UserDto userDto = modelMapper.map(user, UserDto.class);
-
         List<AccountTransactionsSummary> userAccountsTransactions = new ArrayList<>();
         List<Long> userAccounts = user.getAccounts();
         BigDecimal userBalance = BigDecimal.ZERO;
 
         if (userAccounts != null) {
             for (Long accountId : userAccounts) {
-
                 Account account = accountService.getAccountById(accountId);
-                AccountTransactionsSummary accountTransactionsSummary = buildAccountTransactionSummeryOfAccount(accountId, account);
+                AccountTransactionsSummary accountTransactionsSummary = buildTransactionSummeryOfAccount(accountId, account);
                 userAccountsTransactions.add(accountTransactionsSummary);
 
                 if (account.getAccountBalance() == null) {
@@ -71,13 +69,12 @@ public class UserConverter {
                 }
             }
         }
-
         userDto.setBalance(userBalance);
         userDto.setAccounts(userAccountsTransactions);
         return userDto;
     }
 
-    private AccountTransactionsSummary buildAccountTransactionSummeryOfAccount(Long accountId, Account account) {
+    private AccountTransactionsSummary buildTransactionSummeryOfAccount(Long accountId, Account account) {
         List<Transaction> transactions = transactionService.findByAccount(accountId);
 
         if(transactions == null){

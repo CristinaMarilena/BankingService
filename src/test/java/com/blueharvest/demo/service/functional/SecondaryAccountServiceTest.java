@@ -1,4 +1,4 @@
-package com.blueharvest.demo.functional.service;
+package com.blueharvest.demo.service.functional;
 
 import com.blueharvest.demo.exception.NotFoundException;
 import com.blueharvest.demo.model.Account;

@@ -1,7 +1,6 @@
 package com.blueharvest.demo.service.entity;
 
 import com.blueharvest.demo.model.Account;
-import com.blueharvest.demo.model.AccountType;
 
 import java.util.List;
 

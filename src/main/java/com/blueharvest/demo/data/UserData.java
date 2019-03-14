@@ -42,7 +42,6 @@ public class UserData {
                 userIndex = i;
             }
         }
-
         this.users.remove(userIndex);
     }
 
@@ -65,7 +64,6 @@ public class UserData {
         user1.setAccounts(userAccounts);
         user1.setPassword("potter");
         this.users.add(user1);
-
     }
 
 }
