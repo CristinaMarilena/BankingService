@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Blue Harvest</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/index.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="js/app.js"></script>
-
-    <link href="css/index.css" rel="stylesheet">
 </head>
-
 <body ng-app="app">
 <div ng-controller="UserController">
 
-    <div class='form' id="home" ng-hide="hideLogin">
+    <!--Login form-->
+    <div class='form' ng-hide="hideLogin">
         <div class='form_title'>Log<span>I</span>n</div>
         <form class='form_items' autocomplete="off">
             <div class='form_inputs'>
@@ -27,34 +25,38 @@
             </div>
             <button class='form_button' ng-click="getUser()">Log In</button>
         </form>
-        <div class='form_other'>
-            <a href='/forgotPass'><b>forgot password?</b></a>
-            <a href='/join'><b>Join Now</b></a>
+        <div class="custom_alert alert alert-danger" role="alert" ng-hide="userNotFound">
+            Wrong username or password. Please try again.
         </div>
     </div>
 
-    <div ng-hide="!hideLogin" class="secondary-account">
-    <form class='form_items' autocomplete="off">
-        <label><b>Create new account with the initial credit: </b></label>
-        <input required autocomplete="off" ng-model="initialCredit"/>
-        <button type="button" class=" secondary-account-btn btn btn-dark btn-lg" ng-click="createSecondaryAccountForUser()">Create account</button>
-    </form>
+    <!--Secondary account create form-->
+    <div ng-hide="!hideLogin" class="form secondary-account">
+        <form class='form_items' autocomplete="off">
+            <span class="badge badge-secondary" style="font-size: 20px">Create new account with the initial credit</span><br>
+            <input required autocomplete="off" ng-model="initialCredit"/>
+            <button type="button" class=" secondary-account-btn btn btn-dark btn-lg" ng-click="createSecondaryAccountForUser()">Create account</button>
+        </form>
+        <div class="custom_alert alert alert-danger" role="alert" ng-hide="notEnoughCredit">
+            "Not enough credit for this transaction."
+        </div>
     </div>
 
+    <!--User accounts information-->
     <div ng-hide="!hideLogin" class="accounts">
-
         <div>
-            <h2 font-size="2.5rem" >My accounts  </h2><br>
+            <span class="badge badge-secondary" style="font-size: 30px">Accounts and transaction history</span>
+            <br>
         </div>
-
         <table class="table table-dark >
-        <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">Account nr</th>
-            <th scope="col">Account type</th>
-            <th scope="col">Balance</th>
-            <th scope="col">Transactions</th>
+               <thead>
+               <tr>
+               <th scope="col">
+        </th>
+        <th scope="col">Account nr</th>
+        <th scope="col">Account type</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Transactions</th>
         </tr>
         </thead>
         <tbody ng-repeat="account in credentials.accounts">
@@ -64,18 +66,16 @@
             <td>{{account.accountBalance}} €</td>
             <td>
                 <div ng-repeat="transaction in account.transactions">
-                <span>Transaction id: {{transaction.id}}</span>
-                <span>Account from: {{transaction.fromAccount}}</span>
-                <span>Account to: {{transaction.toAccount}}</span>
-                <span>Amount: {{transaction.amount}}</span>
+                    <span>Transaction id: {{transaction.id}}</span>
+                    <span>Account from: {{transaction.fromAccount}}</span>
+                    <span>Account to: {{transaction.toAccount}}</span>
+                    <span>Amount: {{transaction.amount}}</span>
                 </div>
             </td>
         </tr>
         </tbody>
-    </table>
+        </table>
     </div>
-
 </div>
 </body>
-
 </html>

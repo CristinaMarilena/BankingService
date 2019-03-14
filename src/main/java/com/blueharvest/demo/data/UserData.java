@@ -66,29 +66,6 @@ public class UserData {
         user1.setPassword("potter");
         this.users.add(user1);
 
-/*        User user2 = new User();
-        user2.setId(2L);
-        user2.setName("Hermione");
-        user2.setSurname("Granger");
-        this.users.add(user2);
-
-        User user3 = new User();
-        user3.setId(3L);
-        user3.setName("Ronald");
-        user3.setSurname("Weasley");
-        this.users.add(user3);
-
-        User user4 = new User();
-        user4.setId(4L);
-        user4.setName("Draco");
-        user4.setSurname("Malfoy");
-        this.users.add(user4);
-
-        User user5 = new User();
-        user5.setId(5L);
-        user5.setName("Luna");
-        user5.setSurname("Lovegood");
-        this.users.add(user5);*/
     }
 
 }

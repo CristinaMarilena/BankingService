@@ -23,7 +23,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blueharvest.demo.model.AccountType.STANDARD;
+import static com.blueharvest.demo.model.AccountType.PRIMARY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -73,7 +73,7 @@ public class UserControllerITTest {
         Account account = new Account();
         account.setId(1L);
         account.setAccountBalance(BigDecimal.valueOf(1000));
-        account.setAccountType(STANDARD);
+        account.setAccountType(PRIMARY);
         account.setPrimary(true);
 
         List<Long> accounts = new ArrayList<>();
@@ -114,7 +114,7 @@ public class UserControllerITTest {
                     assertThat(userDto.getAccounts().get(0)).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getAccountBalance()).isEqualTo(BigDecimal.valueOf(1000));
                     assertThat(userDto.getAccounts().get(0).getAccountId()).isEqualTo(1L);
-                    assertThat(userDto.getAccounts().get(0).getAccountType()).isEqualTo(STANDARD);
+                    assertThat(userDto.getAccounts().get(0).getAccountType()).isEqualTo(PRIMARY);
                     assertThat(userDto.getAccounts().get(0).getTransactions()).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0)).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getId()).isNotNull();

@@ -19,7 +19,7 @@ public class TransactionData {
     }
 
     public List<Transaction> getTransactions() {
-        return transactions;
+        return this.transactions;
     }
 
     public Transaction findTransactionById(Long id) {
@@ -41,34 +41,10 @@ public class TransactionData {
 
         Transaction transaction1 = new Transaction();
         transaction1.setId(1L);
-        transaction1.setFromAccount(3L);
-        transaction1.setToAccount(4L);
+        transaction1.setFromAccount(1L);
+        transaction1.setToAccount(43242L);
         transaction1.setAmount(BigDecimal.valueOf(200));
         this.transactions.add(transaction1);
 
-/*        Transaction transaction2 = new Transaction();
-        transaction2.setId(2L);
-        this.transactions.add(transaction2);
-
-        Transaction transaction3 = new Transaction();
-        transaction3.setId(3L);
-        this.transactions.add(transaction3);
-
-        Transaction transaction4 = new Transaction();
-        transaction4.setId(4L);
-        this.transactions.add(transaction4);
-
-        Transaction transaction5 = new Transaction();
-        transaction5.setId(5L);
-        this.transactions.add(transaction5);
-
-        Transaction transaction6 = new Transaction();
-        transaction6.setId(6L);
-        this.transactions.add(transaction6);
-
-        Transaction transaction7 = new Transaction();
-        transaction7.setId(7L);
-        this.transactions.add(transaction7);*/
     }
-
 }

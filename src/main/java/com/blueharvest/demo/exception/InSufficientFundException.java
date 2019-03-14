@@ -12,11 +12,6 @@ public class InSufficientFundException extends RuntimeException {
         this.message = message;
     }
 
-    public InSufficientFundException(Throwable cause, String message) {
-        super(cause);
-        this.message = message;
-    }
-
     public String getMessage() {
         return message;
     }

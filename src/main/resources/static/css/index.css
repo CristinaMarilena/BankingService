@@ -2,16 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
 body {
-/* The image used */
-  background-image: url("../img/register.jpg");
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("../img/register.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+  color: #f8f9fa;
 }
 
 .form {
@@ -154,4 +150,9 @@ body {
     vertical-align: top;
     float: right;
     margin: 8px;
+}
+
+.custom_alert{
+    width: 400px;
+    top: 20px;
 }
