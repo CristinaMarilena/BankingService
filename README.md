@@ -110,8 +110,17 @@ All the logic is implemented in `js/app.js` where the angular module, the user c
 
 ###### Main Screen
 
+At the moment there is only one user in memory
+            
+            username : harry
+            password : potter
+         
+After login take care so you don't refresh the page because the user is not saved in a session and refreshing the page with reinstantiate the angular module.
+
 ![main-screen](./screenshots/main-screen.png)
 
 ###### Accounts Screen
+
+For creating secondary accounts just add the initial credit in the credit input and click the 'Create account' button.
 
 ![accounts-screen](./screenshots/accounts-screen.png)
