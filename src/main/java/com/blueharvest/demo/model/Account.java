@@ -1,14 +1,31 @@
 package com.blueharvest.demo.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Account {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "account_id")
     private Long id;
+
+    @Column(name = "accountNumber")
     private int accountNumber;
+
+    @Column(name = "isPrimary")
     private boolean isPrimary;
-    private AccountType accountType;
+
+    @Column(name = "accountType")
+    private String accountType;
+
+    @Column(name = "accountBalance")
     private BigDecimal accountBalance;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -26,11 +43,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public AccountType getAccountType() {
+    public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(AccountType accountType) {
+    public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
 
@@ -50,4 +67,11 @@ public class Account {
         this.accountBalance = accountBalance;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

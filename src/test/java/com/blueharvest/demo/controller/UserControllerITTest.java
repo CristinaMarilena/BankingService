@@ -59,7 +59,7 @@ public class UserControllerITTest {
     public void getUserInformation__id_of_user_is_not_found() throws Exception {
         when(userService.getUserById(anyLong())).thenReturn(null);
 
-         mockMvc.perform(get("/user/2"))
+        mockMvc.perform(get("/user/2"))
                 .andExpect(status().isNotFound());
     }
 
@@ -73,11 +73,11 @@ public class UserControllerITTest {
         Account account = new Account();
         account.setId(1L);
         account.setAccountBalance(BigDecimal.valueOf(1000));
-        account.setAccountType(PRIMARY);
+        account.setAccountType(PRIMARY.toString());
         account.setPrimary(true);
 
-        List<Long> accounts = new ArrayList<>();
-        accounts.add(1L);
+        List<Account> accounts = new ArrayList<>();
+        accounts.add(account);
 
         List<Transaction> accountTransactions = new ArrayList<>();
         Transaction transaction = new Transaction();

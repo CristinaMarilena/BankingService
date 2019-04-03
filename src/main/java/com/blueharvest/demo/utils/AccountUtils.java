@@ -13,7 +13,7 @@ public class AccountUtils {
         Account account = new Account();
         account.setId(randomId());
         account.setPrimary(primary);
-        account.setAccountType(accountType);
+        account.setAccountType(accountType.toString());
         account.setAccountBalance(BigDecimal.ZERO);
         return account;
     }

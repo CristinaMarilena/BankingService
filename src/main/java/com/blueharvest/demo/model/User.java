@@ -4,36 +4,57 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+@Entity
 public class User implements UserDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "user_id")
     private Long id;
 
+    @Column(name = "name")
+/*
     @NotNull(message = "The name must not be empty")
+*/
     private String name;
 
+    @Column(name = "surname")
+/*
     @NotNull(message = "The surname must not be empty")
+*/
     private String surname;
 
+    @Column(name = "password")
+/*
     @NotNull(message = "The password must not be empty")
+*/
     private String password;
 
+    @Column(name = "enabled")
+/*
     @NotNull
+*/
     private boolean enabled;
 
+    @Column(name = "username")
+/*
     @NotNull
+*/
     private String username;
+
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    private List<Account> accounts;
 
     public void setUsername(String username) {
         this.username = username;
     }
-
-    private List<Long> accounts;
 
     public Long getId() {
         return id;
@@ -59,11 +80,11 @@ public class User implements UserDetails {
         this.surname = surname;
     }
 
-    public List<Long> getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(List<Long> accounts) {
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 
@@ -110,10 +131,10 @@ public class User implements UserDetails {
         return false;
     }
 
-    public void addAccount(Long id){
+    public void addAccount(Account account){
         if(this.accounts == null){
             this.accounts = new ArrayList<>();
         }
-        accounts.add(id);
+        accounts.add(account);
     }
 }

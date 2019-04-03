@@ -61,7 +61,9 @@ public class UserData {
         user1.setUsername("harry");
         List<Long> userAccounts = new ArrayList<>();
         userAccounts.add(1L);
+/*
         user1.setAccounts(userAccounts);
+*/
         user1.setPassword("potter");
         this.users.add(user1);
     }

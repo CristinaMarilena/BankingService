@@ -37,14 +37,8 @@ public class UserConverter {
 
     public UserAccountsDto convertToUserAccountsDto(User user) {
         UserAccountsDto userAccountsDto = modelMapper.map(user, UserAccountsDto.class);
-        List<Long> accounts = user.getAccounts();
-        List<Account> userAccounts = new ArrayList<>();
-
-        for (Long accountId : accounts) {
-            Account account = accountService.getAccountById(accountId);
-            userAccounts.add(account);
-        }
-
+        List<Account> accounts = user.getAccounts();
+        List<Account> userAccounts = new ArrayList<>(accounts);
         userAccountsDto.setAccounts(userAccounts);
         return userAccountsDto;
     }
@@ -52,20 +46,19 @@ public class UserConverter {
     public UserDto convertToUserDto(User user) {
         UserDto userDto = modelMapper.map(user, UserDto.class);
         List<AccountTransactionsSummary> userAccountsTransactions = new ArrayList<>();
-        List<Long> userAccounts = user.getAccounts();
+        List<Account> userAccounts = user.getAccounts();
         BigDecimal userBalance = BigDecimal.ZERO;
 
         if (userAccounts != null) {
-            for (Long accountId : userAccounts) {
-                Account account = accountService.getAccountById(accountId);
-                AccountTransactionsSummary accountTransactionsSummary = buildTransactionSummeryOfAccount(accountId, account);
+            for (Account userAccount : userAccounts) {
+                AccountTransactionsSummary accountTransactionsSummary = buildTransactionSummeryOfAccount(userAccount.getId(), userAccount);
                 userAccountsTransactions.add(accountTransactionsSummary);
 
-                if (account.getAccountBalance() == null) {
-                    account.setAccountBalance(BigDecimal.ZERO);
-                    accountService.updateAccount(account);
+                if (userAccount.getAccountBalance() == null) {
+                    userAccount.setAccountBalance(BigDecimal.ZERO);
+                    accountService.updateAccount(userAccount);
                 } else {
-                    userBalance = userBalance.add(account.getAccountBalance());
+                    userBalance = userBalance.add(userAccount.getAccountBalance());
                 }
             }
         }

@@ -6,7 +6,7 @@ import java.util.List;
 public class AccountTransactionsSummary {
 
     private Long accountId;
-    private AccountType accountType;
+    private String accountType;
     private BigDecimal accountBalance;
     private List<Transaction> transactions;
 
@@ -18,11 +18,11 @@ public class AccountTransactionsSummary {
         this.accountId = accountId;
     }
 
-    public AccountType getAccountType() {
+    public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(AccountType accountType) {
+    public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
 

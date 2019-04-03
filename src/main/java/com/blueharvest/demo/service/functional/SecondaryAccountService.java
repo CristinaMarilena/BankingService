@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.blueharvest.demo.model.AccountType.SAVINGS;
 import static com.blueharvest.demo.utils.AccountUtils.createSimpleAccount;
@@ -34,10 +36,13 @@ public class SecondaryAccountService {
         }
 
         Account account = createSimpleAccount(false, SAVINGS);
-        user.addAccount(account.getId());
+        user.addAccount(account);
 
         if(initialCredit.compareTo(BigDecimal.ZERO) > 0){
-            Account primaryAccount = accountService.findPrimaryAccountInUserAccounts(user.getAccounts());
+            List<Long> accountsIds = new ArrayList<>();
+            user.getAccounts().forEach(userAccount -> accountsIds.add(userAccount.getId()));
+
+            Account primaryAccount = accountService.findPrimaryAccountInUserAccounts(accountsIds);
             transactionBetweenPrimaryAndCurrentAccount(primaryAccount, account, initialCredit);
         }
         accountService.saveAccount(account);

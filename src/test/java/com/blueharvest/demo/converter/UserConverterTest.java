@@ -61,13 +61,16 @@ public class UserConverterTest {
         userDto.setSurname("surname");
 
         User user = new User();
-        List<Long> userAccounts = new ArrayList<>();
-        userAccounts.add(1L);
-        user.setAccounts(userAccounts);
+
 
         Account account = new Account();
         account.setAccountBalance(BigDecimal.valueOf(300));
         account.setId(1L);
+
+        List<Account> userAccounts = new ArrayList<>();
+        userAccounts.add(account);
+        user.setAccounts(userAccounts);
+
 
         Transaction transaction = new Transaction();
         transaction.setFromAccount(1L);
@@ -104,13 +107,14 @@ public class UserConverterTest {
         userDto.setSurname("surname");
 
         User user = new User();
-        List<Long> userAccounts = new ArrayList<>();
-        userAccounts.add(1L);
-        user.setAccounts(userAccounts);
 
         Account account = new Account();
         account.setAccountBalance(BigDecimal.valueOf(300));
         account.setId(1L);
+
+        List<Account> userAccounts = new ArrayList<>();
+        userAccounts.add(account);
+        user.setAccounts(userAccounts);
 
         when(modelMapper.map(any(), any())).thenReturn(userDto);
         when(accountService.getAccountById(anyLong())).thenReturn(account);
