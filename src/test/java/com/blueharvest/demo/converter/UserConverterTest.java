@@ -73,15 +73,15 @@ public class UserConverterTest {
 
 
         Transaction transaction = new Transaction();
-        transaction.setFromAccount(1L);
-        transaction.setToAccount(21L);
+  /*      transaction.setFromAccount(1L);
+        transaction.setToAccount(21L);*/
         transaction.setAmount(BigDecimal.valueOf(200));
 
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction);
 
         when(modelMapper.map(any(), any())).thenReturn(userDto);
-        when(accountService.getAccountById(anyLong())).thenReturn(account);
+        when(accountService.saveAccount(account)).thenReturn(account);
         when(transactionService.findByAccount(anyLong())).thenReturn(transactions);
 
         userDto = userConverter.convertToUserDto(user);
@@ -117,7 +117,7 @@ public class UserConverterTest {
         user.setAccounts(userAccounts);
 
         when(modelMapper.map(any(), any())).thenReturn(userDto);
-        when(accountService.getAccountById(anyLong())).thenReturn(account);
+        when(accountService.findById(anyLong())).thenReturn(account);
         when(transactionService.findByAccount(anyLong())).thenReturn(null);
 
         userConverter.convertToUserDto(user);

@@ -1,12 +1,9 @@
 package com.blueharvest.demo.repository;
 
 import com.blueharvest.demo.model.User;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository{
+public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
-    User findById(Long id);
-    User save(User user);
-    User update(User user);
-
 }

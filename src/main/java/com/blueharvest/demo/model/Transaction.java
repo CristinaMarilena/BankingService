@@ -1,12 +1,28 @@
 package com.blueharvest.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table
 public class Transaction {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "transactionId")
     private Long id;
-    private Long fromAccount;
-    private Long toAccount;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fromAccountId")
+    private Account fromAccount;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "toAccountId")
+    private Account toAccount;
+
+    @Column(name = "amount")
     private BigDecimal amount;
 
     public Long getId() {
@@ -17,19 +33,19 @@ public class Transaction {
         this.id = id;
     }
 
-    public Long getFromAccount() {
+    public Account getFromAccount() {
         return fromAccount;
     }
 
-    public void setFromAccount(Long fromAccount) {
+    public void setFromAccount(Account fromAccount) {
         this.fromAccount = fromAccount;
     }
 
-    public Long getToAccount() {
+    public Account getToAccount() {
         return toAccount;
     }
 
-    public void setToAccount(Long toAccount) {
+    public void setToAccount(Account toAccount) {
         this.toAccount = toAccount;
     }
 

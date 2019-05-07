@@ -36,10 +36,10 @@ public class AccountsTransactionsService {
         Transaction transaction = transactionService.createSimpleTransaction(fromAccount, toAccount, credit);
 
         fromAccount.setAccountBalance(fromAccount.getAccountBalance().subtract(credit));
-        accountService.updateAccount(fromAccount);
+        accountService.saveAccount(fromAccount);
 
         toAccount.setAccountBalance(credit);
-        accountService.updateAccount(toAccount);
+        accountService.saveAccount(toAccount);
 
         transactionService.saveTransaction(transaction);
     }

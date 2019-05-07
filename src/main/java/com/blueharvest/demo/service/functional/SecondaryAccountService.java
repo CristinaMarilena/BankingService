@@ -46,7 +46,7 @@ public class SecondaryAccountService {
             transactionBetweenPrimaryAndCurrentAccount(primaryAccount, account, initialCredit);
         }
         accountService.saveAccount(account);
-        userService.updateUser(user);
+        userService.saveUser(user);
         return user;
     }
 

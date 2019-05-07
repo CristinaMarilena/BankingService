@@ -23,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction getTransactionById(Long id) {
-        return transactionRepository.findById(id);
+        return transactionRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -36,15 +36,15 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transaction = new Transaction();
         transaction.setId(randomId());
         transaction.setAmount(credit);
-        transaction.setFromAccount(fromAccount.getId());
-        transaction.setToAccount(toAccount.getId());
+/*        transaction.setFromAccount(fromAccount.getId());
+        transaction.setToAccount(toAccount.getId());*/
 
         return transaction;
     }
 
     @Override
     public List<Transaction> findByAccount(Long accountId) {
-        return transactionRepository.findByAccount(accountId);
+        return transactionRepository.findByFromAccountOrToAccount(accountId, accountId);
     }
 
 }

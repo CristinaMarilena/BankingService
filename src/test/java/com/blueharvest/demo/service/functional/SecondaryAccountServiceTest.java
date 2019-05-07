@@ -50,7 +50,7 @@ public class SecondaryAccountServiceTest {
         assertThat(resultUser.getAccounts()).isNotNull();
         assertThat(resultUser.getAccounts().get(0)).isNotNull();
         verify(accountService, times(1)).saveAccount(any(Account.class));
-        verify(userService, times(1)).updateUser(user);
+        verify(userService, times(1)).saveUser(user);
     }
 
     @Test
@@ -69,6 +69,6 @@ public class SecondaryAccountServiceTest {
         assertThat(resultUser.getAccounts().get(0)).isNotNull();
         verify(accountsTransactionsService, times(1)).transactionBetweenAccounts(any(Account.class), any(Account.class), any(BigDecimal.class));
         verify(accountService, times(2)).saveAccount(any(Account.class));
-        verify(userService, times(1)).updateUser(user);
+        verify(userService, times(1)).saveUser(user);
     }
 }

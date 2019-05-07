@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -32,11 +32,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return userRepository.update(user);
     }
 
     @Override

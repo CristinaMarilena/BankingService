@@ -18,18 +18,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account getAccountById(Long id) {
-        return accountRepository.findById(id);
+    public Account findById(Long id) {
+        return accountRepository.findById(id).orElse(null);
     }
 
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);
-    }
-
-    @Override
-    public Account updateAccount(Account account) {
-        return accountRepository.updateAccount(account);
     }
 
     @Override

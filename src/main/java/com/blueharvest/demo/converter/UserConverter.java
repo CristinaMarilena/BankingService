@@ -56,7 +56,7 @@ public class UserConverter {
 
                 if (userAccount.getAccountBalance() == null) {
                     userAccount.setAccountBalance(BigDecimal.ZERO);
-                    accountService.updateAccount(userAccount);
+                    accountService.saveAccount(userAccount);
                 } else {
                     userBalance = userBalance.add(userAccount.getAccountBalance());
                 }
@@ -68,7 +68,7 @@ public class UserConverter {
     }
 
     private AccountTransactionsSummary buildTransactionSummeryOfAccount(Long accountId, Account account) {
-        List<Transaction> transactions = transactionService.findByAccount(accountId);
+        List<Transaction> transactions = null;
 
         if(transactions == null){
             LOGGER.warn("No transactions found of the account with nr : " + accountId);

@@ -82,14 +82,14 @@ public class UserControllerITTest {
         List<Transaction> accountTransactions = new ArrayList<>();
         Transaction transaction = new Transaction();
         transaction.setAmount(BigDecimal.valueOf(200));
-        transaction.setFromAccount(1L);
-        transaction.setToAccount(2136L);
+/*        transaction.setFromAccount(1L);
+        transaction.setToAccount(2136L);*/
         transaction.setId(122L);
 
         Transaction transaction1 = new Transaction();
         transaction1.setAmount(BigDecimal.valueOf(500));
-        transaction.setFromAccount(74632L);
-        transaction.setToAccount(1L);
+/*        transaction.setFromAccount(74632L);
+        transaction.setToAccount(1L);*/
         transaction.setId(3777L);
 
         accountTransactions.add(transaction);
@@ -98,7 +98,7 @@ public class UserControllerITTest {
         user.setAccounts(accounts);
 
         when(userService.getUserById(anyLong())).thenReturn(user);
-        when(accountService.getAccountById(anyLong())).thenReturn(account);
+        when(accountService.findById(anyLong())).thenReturn(account);
         when(transactionService.findByAccount(anyLong())).thenReturn(accountTransactions);
 
          mockMvc.perform(get("/user/1"))

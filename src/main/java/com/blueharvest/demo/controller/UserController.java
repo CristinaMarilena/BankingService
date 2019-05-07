@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
@@ -34,6 +34,18 @@ public class UserController {
         }
     }
 
+    @PutMapping(value = "/{id}")
+    public UserDto updateUser(@PathVariable Long id, @RequestBody User user) {
+        User userToBeUpdated = userService.getUserById(id);
+
+        if (userToBeUpdated != null) {
+            updateUser(user, userToBeUpdated);
+            return userConverter.convertToUserDto(userToBeUpdated);
+        } else {
+            throw new NotFoundException("No user provided with this id");
+        }
+    }
+
     @GetMapping(value = "/login")
     public UserDto getUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         User user = userService.findByUsername(username);
@@ -48,5 +60,21 @@ public class UserController {
     @PostMapping(value = "/registration")
     public User saveUser(@Valid @RequestBody User user) {
         return this.userService.saveUser(user);
+    }
+
+    private void updateUser(User user, User userToBeUpdated) {
+        if(user.getName() != null) {
+            userToBeUpdated.setName(user.getName());
+        }
+        if(user.getSurname() != null) {
+            userToBeUpdated.setUsername(user.getUsername());
+        }
+        if(user.getAccounts() != null) {
+            userToBeUpdated.setAccounts(user.getAccounts());
+        }
+        if(user.getPassword() != null) {
+            userToBeUpdated.setPassword(user.getPassword());
+        }
+        userService.saveUser(userToBeUpdated);
     }
 }
