@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url:jdbc:h2:mem: testdb
+    driverClassName: org.h2.Driver
+    username: test
+    password: test
+    data: classpath:data-user.sql, classpath:data-account.sql, classpath:data-transaction.sql
