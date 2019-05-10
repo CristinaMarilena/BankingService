@@ -9,6 +9,10 @@ For building and running the application you need:
 * JDK 1.8
 * Maven 
 
+### UML relationship diagram 
+
+![MySQL Workbench](https://user-images.githubusercontent.com/23499989/57521290-25182d80-7320-11e9-9a5a-725cc93f2930.jpg)
+
 ## Running the application locally
 There are several ways to run a Spring Boot application on your local machine. 
 
@@ -70,10 +74,6 @@ GET: /user/login
 
 * where the conversion between plain `model` objects and `dto` s is being defined.
 
-**_data_**
-
-* where the in-memory data is stored. It (more or less) acts like a relational database and it's implementing the CRUD and any other necesarry methods.
-
 **_dto_**
 
 * A _Data Transfer Object_ is an object that is used to encapsulate data, and send it from one subsystem of an application to another.
@@ -91,7 +91,7 @@ It also defines a class `AccountTransactionsSummary` that combines account and t
 
 **_repository_** 
 
-* the repositories are responsible for mapping the data from the in-memory storage to the business objects. It handles both how to read/write data (and also delete & update) from/to the storage.
+* the repositories are implemented using Hibernate and provide the basic CRUD operations
 
 **_service_**
 
@@ -124,3 +124,5 @@ After login take care so you don't refresh the page because the user is not save
 For creating secondary accounts just add the initial credit in the credit input and click the 'Create account' button.
 
 ![accounts-screen](./screenshots/accounts-screen.png)
+
+
