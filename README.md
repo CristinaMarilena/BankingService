@@ -74,10 +74,6 @@ GET: /user/login
 
 * where the conversion between plain `model` objects and `dto` s is being defined.
 
-**_data_**
-
-* where the in-memory data is stored. It (more or less) acts like a relational database and it's implementing the CRUD and any other necesarry methods.
-
 **_dto_**
 
 * A _Data Transfer Object_ is an object that is used to encapsulate data, and send it from one subsystem of an application to another.
@@ -95,7 +91,7 @@ It also defines a class `AccountTransactionsSummary` that combines account and t
 
 **_repository_** 
 
-* the repositories are responsible for mapping the data from the in-memory storage to the business objects. It handles both how to read/write data (and also delete & update) from/to the storage.
+* the repositories are implemented using Hibernate and provide the basic CRUD operations
 
 **_service_**
 
