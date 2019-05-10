@@ -9,6 +9,10 @@ For building and running the application you need:
 * JDK 1.8
 * Maven 
 
+### UML relationship diagram 
+
+![MySQL Workbench](https://user-images.githubusercontent.com/23499989/57521290-25182d80-7320-11e9-9a5a-725cc93f2930.jpg)
+
 ## Running the application locally
 There are several ways to run a Spring Boot application on your local machine. 
 
@@ -124,3 +128,5 @@ After login take care so you don't refresh the page because the user is not save
 For creating secondary accounts just add the initial credit in the credit input and click the 'Create account' button.
 
 ![accounts-screen](./screenshots/accounts-screen.png)
+
+
