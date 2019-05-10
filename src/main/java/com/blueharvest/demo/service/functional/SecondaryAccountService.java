@@ -35,24 +35,25 @@ public class SecondaryAccountService {
             throw new NotFoundException("The user was not found.Please contact the administration.");
         }
 
-        Account account = createSimpleAccount(false, SAVINGS);
-        user.addAccount(account);
+        Account newAccount = createSimpleAccount(false, SAVINGS);
+        user.addAccount(newAccount);
+
+        accountService.saveAccount(newAccount);
 
         if(initialCredit.compareTo(BigDecimal.ZERO) > 0){
             List<Long> accountsIds = new ArrayList<>();
             user.getAccounts().forEach(userAccount -> accountsIds.add(userAccount.getId()));
 
             Account primaryAccount = accountService.findPrimaryAccountInUserAccounts(accountsIds);
-            transactionBetweenPrimaryAndCurrentAccount(primaryAccount, account, initialCredit);
+            transactionBetweenPrimaryAndCurrentAccount(primaryAccount, newAccount, initialCredit);
         }
-        accountService.saveAccount(account);
-        userService.saveUser(user);
         return user;
     }
 
-    private void transactionBetweenPrimaryAndCurrentAccount(Account primaryAccount, Account account, BigDecimal initialCredit){
-        accountService.saveAccount(account);
-        accountsTransactionsService.transactionBetweenAccounts(primaryAccount, account, initialCredit);
+    private void transactionBetweenPrimaryAndCurrentAccount(Account primaryAccount, Account newAccount, BigDecimal initialCredit){
+        newAccount.setUser(primaryAccount.getUser());
+        accountService.saveAccount(newAccount);
+        accountsTransactionsService.transactionBetweenAccounts(primaryAccount, newAccount, initialCredit);
     }
 
 }

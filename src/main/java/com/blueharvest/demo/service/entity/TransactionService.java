@@ -11,5 +11,5 @@ public interface TransactionService {
     Transaction getTransactionById(Long id);
     Transaction saveTransaction(Transaction transaction);
     Transaction createSimpleTransaction(Account from, Account to, BigDecimal credit);
-    List<Transaction> findByAccount(Long accountId);
+    List<Transaction> findByAccount(Account account);
 }

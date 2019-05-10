@@ -56,7 +56,7 @@ app
         this.createSecondaryAccountForUser = function createSecondaryAccountForUser(userId, initialCredit) {
             return $http({
                 method: 'POST',
-                url: 'account/' + userId + "/" + initialCredit,
+                url: 'accounts/' + userId + "/" + initialCredit,
             });
         }
 
@@ -66,7 +66,7 @@ app
         this.getUser = function getUser(username, password) {
             return $http({
                 method: 'GET',
-                url: 'user/login',
+                url: 'users/login',
                 params: {
                     username: username,
                     password: password
@@ -77,7 +77,7 @@ app
         this.getUserByUserId = function getUserByUserId(userId) {
             return $http({
                 method: 'GET',
-                url: 'user/' + userId
+                url: 'users/' + userId
             });
         }
     }])

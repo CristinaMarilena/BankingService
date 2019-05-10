@@ -11,7 +11,6 @@ public class AccountUtils {
 
     public static Account createSimpleAccount(boolean primary, AccountType accountType){
         Account account = new Account();
-        account.setId(randomId());
         account.setPrimary(primary);
         account.setAccountType(accountType.toString());
         account.setAccountBalance(BigDecimal.ZERO);

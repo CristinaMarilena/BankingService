@@ -25,6 +25,7 @@ import java.util.List;
 
 import static com.blueharvest.demo.model.AccountType.PRIMARY;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -82,14 +83,22 @@ public class UserControllerITTest {
         List<Transaction> accountTransactions = new ArrayList<>();
         Transaction transaction = new Transaction();
         transaction.setAmount(BigDecimal.valueOf(200));
-/*        transaction.setFromAccount(1L);
-        transaction.setToAccount(2136L);*/
+        Account accountFrom = new Account();
+        accountFrom.setId(1L);
+        transaction.setFromAccount(accountFrom);
+        Account accountTo= new Account();
+        accountTo.setId(2136L);
+        transaction.setToAccount(accountTo);
         transaction.setId(122L);
 
         Transaction transaction1 = new Transaction();
         transaction1.setAmount(BigDecimal.valueOf(500));
-/*        transaction.setFromAccount(74632L);
-        transaction.setToAccount(1L);*/
+        Account accountFrom1 = new Account();
+        accountFrom1.setId(74632L);
+        transaction.setFromAccount(accountFrom1);
+        Account accountTo1= new Account();
+        accountTo1.setId(3777L);
+        transaction.setToAccount(accountTo1);
         transaction.setId(3777L);
 
         accountTransactions.add(transaction);
@@ -99,9 +108,9 @@ public class UserControllerITTest {
 
         when(userService.getUserById(anyLong())).thenReturn(user);
         when(accountService.findById(anyLong())).thenReturn(account);
-        when(transactionService.findByAccount(anyLong())).thenReturn(accountTransactions);
+        when(transactionService.findByAccount(any(Account.class))).thenReturn(accountTransactions);
 
-         mockMvc.perform(get("/user/1"))
+         mockMvc.perform(get("/users/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(mvcResult -> {
@@ -114,15 +123,15 @@ public class UserControllerITTest {
                     assertThat(userDto.getAccounts().get(0)).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getAccountBalance()).isEqualTo(BigDecimal.valueOf(1000));
                     assertThat(userDto.getAccounts().get(0).getAccountId()).isEqualTo(1L);
-                    assertThat(userDto.getAccounts().get(0).getAccountType()).isEqualTo(PRIMARY);
+                    assertThat(userDto.getAccounts().get(0).getAccountType()).isEqualTo(PRIMARY.toString());
                     assertThat(userDto.getAccounts().get(0).getTransactions()).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0)).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getId()).isNotNull();
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getId()).isEqualTo(3777L);
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getFromAccount()).isNotNull();
-                    assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getFromAccount()).isEqualTo(74632L);
+                    assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getFromAccount().getId()).isEqualTo(74632L);
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getToAccount()).isNotNull();
-                    assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getToAccount()).isEqualTo(1L);
+                    assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getToAccount().getId()).isEqualTo(3777L);
                     assertThat(userDto.getAccounts().get(0).getTransactions().get(1)).isNotNull();
                 }).andReturn();
     }

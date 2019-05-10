@@ -38,8 +38,8 @@ public class AccountController {
     }
 
 /*    @PostMapping("/{id}")
-    public Account updateAccount(@RequestBody Account account){
-        return accountService.updateAccount(account);
+    public Account updateAccount(@PathVariable Long id, @RequestBody Account account){
+        return accountService.update(account);
     }*/
 
 }

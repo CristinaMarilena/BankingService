@@ -73,16 +73,19 @@ public class UserConverterTest {
 
 
         Transaction transaction = new Transaction();
-  /*      transaction.setFromAccount(1L);
-        transaction.setToAccount(21L);*/
+        Account fromAccount = new Account();
+        fromAccount.setId(1L);
+        transaction.setFromAccount(fromAccount);
+        Account toAccount = new Account();
+        toAccount.setId(21L);
+        transaction.setToAccount(toAccount);
         transaction.setAmount(BigDecimal.valueOf(200));
 
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction);
 
         when(modelMapper.map(any(), any())).thenReturn(userDto);
-        when(accountService.saveAccount(account)).thenReturn(account);
-        when(transactionService.findByAccount(anyLong())).thenReturn(transactions);
+        when(transactionService.findByAccount(any(Account.class))).thenReturn(transactions);
 
         userDto = userConverter.convertToUserDto(user);
 
@@ -96,8 +99,10 @@ public class UserConverterTest {
         assertThat(userDto.getAccounts().get(0).getTransactions().size()).isEqualTo(1);
         assertThat(userDto.getAccounts().get(0).getTransactions().get(0)).isNotNull();
         assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getAmount()).isEqualTo(BigDecimal.valueOf(200));
-        assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getFromAccount()).isEqualTo(1L);
-        assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getToAccount()).isEqualTo(21L);
+        assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getFromAccount()).isNotNull();
+        assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getFromAccount().getId()).isEqualTo(1L);
+        assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getToAccount()).isNotNull();
+        assertThat(userDto.getAccounts().get(0).getTransactions().get(0).getToAccount().getId()).isEqualTo(21L);
     }
 
     @Test(expected = NotFoundException.class)
@@ -117,8 +122,6 @@ public class UserConverterTest {
         user.setAccounts(userAccounts);
 
         when(modelMapper.map(any(), any())).thenReturn(userDto);
-        when(accountService.findById(anyLong())).thenReturn(account);
-        when(transactionService.findByAccount(anyLong())).thenReturn(null);
 
         userConverter.convertToUserDto(user);
     }

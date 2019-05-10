@@ -34,17 +34,16 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction createSimpleTransaction(Account fromAccount, Account toAccount, BigDecimal credit) {
         Transaction transaction = new Transaction();
-        transaction.setId(randomId());
         transaction.setAmount(credit);
-/*        transaction.setFromAccount(fromAccount.getId());
-        transaction.setToAccount(toAccount.getId());*/
+        transaction.setFromAccount(fromAccount);
+        transaction.setToAccount(toAccount);
 
         return transaction;
     }
 
     @Override
-    public List<Transaction> findByAccount(Long accountId) {
-        return transactionRepository.findByFromAccountOrToAccount(accountId, accountId);
+    public List<Transaction> findByAccount(Account account) {
+        return transactionRepository.findByFromAccountOrToAccount(account, account);
     }
 
 }

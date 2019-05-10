@@ -51,7 +51,7 @@ public class UserConverter {
 
         if (userAccounts != null) {
             for (Account userAccount : userAccounts) {
-                AccountTransactionsSummary accountTransactionsSummary = buildTransactionSummeryOfAccount(userAccount.getId(), userAccount);
+                AccountTransactionsSummary accountTransactionsSummary = buildTransactionSummeryOfAccount(userAccount);
                 userAccountsTransactions.add(accountTransactionsSummary);
 
                 if (userAccount.getAccountBalance() == null) {
@@ -67,17 +67,17 @@ public class UserConverter {
         return userDto;
     }
 
-    private AccountTransactionsSummary buildTransactionSummeryOfAccount(Long accountId, Account account) {
-        List<Transaction> transactions = null;
+    private AccountTransactionsSummary buildTransactionSummeryOfAccount(Account account) {
+        List<Transaction> transactions = transactionService.findByAccount(account);
 
-        if(transactions == null){
-            LOGGER.warn("No transactions found of the account with nr : " + accountId);
-            throw new NotFoundException("No transactions of the account with nr : " + accountId + ". Please contact the administration");
+        if(transactions == null || transactions.isEmpty()){
+            LOGGER.warn("No transactions found of the account with nr : " + account.getId());
+            throw new NotFoundException("No transactions of the account with nr : " + account.getId() + ". Please contact the administration");
         }
 
         AccountTransactionsSummary accountTransactionsSummary = new AccountTransactionsSummary();
         accountTransactionsSummary.setAccountBalance(account.getAccountBalance());
-        accountTransactionsSummary.setAccountId(accountId);
+        accountTransactionsSummary.setAccountId(account.getId());
         accountTransactionsSummary.setAccountType(account.getAccountType());
         accountTransactionsSummary.setTransactions(transactions);
 
