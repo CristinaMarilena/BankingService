@@ -1,5 +1,6 @@
 package com.blueharvest.demo.controller;
 
+import com.blueharvest.demo.dto.UserAccountsDto;
 import com.blueharvest.demo.dto.UserDto;
 import com.blueharvest.demo.exception.NotFoundException;
 import com.blueharvest.demo.converter.UserConverter;
@@ -29,6 +30,17 @@ public class UserController {
 
         if (user != null) {
             return userConverter.convertToUserDto(user);
+        } else {
+            throw new NotFoundException("No user provided with this id");
+        }
+    }
+
+    @GetMapping(value = "/accounts/{id}")
+    public UserAccountsDto getUserAccountsInformation(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+
+        if (user != null) {
+            return userConverter.convertToUserAccountsDto(user);
         } else {
             throw new NotFoundException("No user provided with this id");
         }
